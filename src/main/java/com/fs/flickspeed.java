@@ -198,7 +198,8 @@ public class flickspeed {
             }
         });
         enter.setFocusPainted(false);
-        enter.setBorder(null);
+        enter.setForeground(Color.white);
+        enter.setContentAreaFilled(false);
 
         panel.add(welcome);
 
