@@ -229,7 +229,7 @@ public class flickspeed {
     }
 
     public static void mainLoop() {
-        boolean running = true
+        boolean running = true;
         createTray();
         while (running) {
             double dots = calculateSpeed(DPI);
