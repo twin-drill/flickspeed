@@ -1,0 +1,27 @@
+body {
+    background-color: rgba(14, 23, 38, 0.95);
+}
+
+.navbar {
+    background: #0e1726;
+    color: white;
+}
+
+.navbar-brand,
+.nav-link {
+    color: white;
+}
+
+.header {
+    background-image: url('index/r6bg.jpg');
+    -webkit-background-image: url('index/r6bg.jpg');
+    -moz-background-image: url('index/r6bg.jpg');
+    -o-background-image: url('index/r6bg.jpg');
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
