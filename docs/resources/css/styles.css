@@ -40,7 +40,7 @@ header {
     overflow: hidden;
 }
 
-header img {
+.hero-media {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -71,10 +71,80 @@ header .overlay {
     z-index: 1;
 }
 
+
+header .down-arrow {
+    text-align: center;
+    object-fit: cover;
+}
+header .header-pulse-arrow {
+    position: absolute;
+    bottom: 5vh;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+header .header-pulse-arrow img {
+    animation: pulse 1.5s 1s ease-out infinite
+}
+
+header .header-downward-arrow {
+    position: absolute;
+    bottom: 5vh;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+header .header-downward-arrow img {
+    animation: slide-down 3s 1s ease-out infinite;
+    opacity: 0;
+}
+
 .margins-provided {
     margin: 4% 7% auto;
 }
 
 .indented {
     margin: 3%;
+}
+
+.btn {
+    background-color: #0e1726;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: rgba(14, 23, 38, 0.75);
+    color: white;
+}
+
+.version-numbers {
+    font-size: 0.75em;
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-200%);
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 0;
+        transform: none;
+    }
+
+}
+
+@keyframes pulse {
+
 }

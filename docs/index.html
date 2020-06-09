@@ -8,6 +8,7 @@
     <meta name="description" content="flickspeed, the mouse speed overlay">
     <meta name="author" content="3Axes">
 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="icon" href="resources/images/logo.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">    <link rel="stylesheet" href="resources/css/styles.css?v=1.0">
 </head>
@@ -15,8 +16,8 @@
 <body>
 
     <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="index.html">
-            <strong>flickspeed</strong>
+        <a class="navbar-brand font-weight-bold" href="#">
+            flickspeed
         </a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,12 +40,22 @@
 
     <header>
         <div class="overlay"></div>
-        <img src="resources/images/r6bg.jpg" alt="flickspeed">
+        <div class="hero-media">
+            <img src="resources/images/r6bg.jpg" alt="flickspeed">
+        </div>
         <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center">
                 <div class="w-100 text-white">
                     <h1 class="display-3">flickspeed</h1>
                     <p>The mouse speed overlay.</p>
+                    <div class="down-arrow">
+                        <div class="header-pulse-arrow">
+                            <img src="resources/images/whitearrow.png" height="15" width="auto">
+                        </div>
+                        <div class="header-downward-arrow">
+                            <img src="resources/images/whitearrow.png" height="15" width="auto">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,17 +75,38 @@
                 <li>User-defined speed threshold and notification time</li>
                 <li>Small, non-intrusive and elegant overlay design</li>
                 <li>Process stays in system tray</li>
+                <li>Toggle-able persistent speed overlay</li>
             </ul>
         </div>
 
         <h1 id="download">Download</h1>
         <div class="indented">
-
+            <a href="resources/assets/flickspeed.java" download>
+                <button class="btn"><i class="fa fa-download"></i> Direct Download <span class="version-numbers">(v1.0.0)</span></button>
+            </a>
+            <button class="btn" onclick="window.location.href='https://github.com/3Axes/flickspeed/releases'"><i class="fa fa-download"></i> Download from Github <span class="version-numbers">(v1.0.0)</span></button>
         </div>
 
         <h1 id="next">What's next for <i>flickspeed</i></h1>
+        <div class="indented">
+            <ul>
+                <li>Custom colorings and other customization</li>
+                <li>Persistent overlay "speedometer"</li>
+                <li>No restarting on setup and re-setup</li>
+            </ul>
+        </div>
 
     </div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h6 class="text-uppercase font-weight-bold">Footer Text</h6>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="resources/js/main.js"></script>
     <script src="resources/js/scripts.js"></script>
