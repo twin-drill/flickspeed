@@ -61,7 +61,7 @@ public class flickspeed {
     public static void firstRun() {
         Path file = Paths.get("data.dat");
         JFrame firstRunFrame = new JFrame("flickspeed First Run");
-        firstRunFrame.setIconImage(new ImageIcon("logo.png").getImage());
+        firstRunFrame.setIconImage(new ImageIcon("res/logo.png").getImage());
         firstRunFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         firstRunFrame.getContentPane().setMaximumSize(new Dimension(344, 379));
         firstRunFrame.setResizable(false);

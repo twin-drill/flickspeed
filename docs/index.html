@@ -8,8 +8,8 @@
     <meta name="description" content="flickspeed, the mouse speed overlay">
     <meta name="author" content="3Axes">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources/css/styles.css?v=1.0">
+    <link rel="icon" href="resources/images/logo.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">    <link rel="stylesheet" href="resources/css/styles.css?v=1.0">
 </head>
 
 <body>
@@ -24,12 +24,12 @@
         <div class="collapse navbar-collapse" id="main-navigation">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="#about">
                         About
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a class="nav-link" href="https://github.com/3Axes/flickspeed/releases">
+                    <a class="nav-link" href="#download">
                         Download
                     </a>
                 </li>
@@ -37,13 +37,47 @@
         </div>
     </nav>
 
-    <header class="page-header header container-fluid">
-
+    <header>
+        <div class="overlay"></div>
+        <img src="resources/images/r6bg.jpg" alt="flickspeed">
+        <div class="container h-100">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100 text-white">
+                    <h1 class="display-3">flickspeed</h1>
+                    <p>The mouse speed overlay.</p>
+                </div>
+            </div>
+        </div>
     </header>
+
+    <div class="margins-provided text-white">
+
+        <h1 id="about">About</h1>
+        <div class="indented">
+            <p>
+                <i>flickspeed</i> is a program that captures mouse speed and translates it to recognizable,
+                real-world speed values.
+            </p>
+            <h3>Features:</h3>
+            <ul>
+                <li>Support for mph, kph, and m/s</li>
+                <li>User-defined speed threshold and notification time</li>
+                <li>Small, non-intrusive and elegant overlay design</li>
+                <li>Process stays in system tray</li>
+            </ul>
+        </div>
+
+        <h1 id="download">Download</h1>
+        <div class="indented">
+
+        </div>
+
+        <h1 id="next">What's next for <i>flickspeed</i></h1>
+
+    </div>
 
     <script src="resources/js/main.js"></script>
     <script src="resources/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script></body>
 </html>
