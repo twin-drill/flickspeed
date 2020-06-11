@@ -108,6 +108,19 @@ header .header-downward-arrow img {
     margin: 3%;
 }
 
+.mini-video video{
+    min-width: 150%;
+    height: auto;
+}
+
+.caption {
+    width: 150%;
+}
+
+.caption p {
+    text-align: center;
+}
+
 .btn {
     background-color: #0e1726;
     border: none;

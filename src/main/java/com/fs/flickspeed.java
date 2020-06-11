@@ -334,11 +334,19 @@ public class flickspeed {
             SystemTray tray = SystemTray.getSystemTray();
             Image image = Toolkit.getDefaultToolkit().getImage("res/logo.png");
 
+            PopupMenu menu = new PopupMenu();
+            final TrayIcon icon = new TrayIcon(image, "flickspeed", menu);
+
             ActionListener setup = e -> firstRun();
             ActionListener persistent_toggle = e -> PERSISTENT_OVERLAY = !PERSISTENT_OVERLAY;
-            ActionListener quit = e -> System.exit(0);
+            ActionListener quit = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    tray.remove(icon);
+                    System.exit(0);
+                }
+            };
 
-            PopupMenu menu = new PopupMenu();
             MenuItem setupItem = new MenuItem("Re-run setup");
             setupItem.addActionListener(setup);
             setupItem.setFont(DEFAULT_FONT_SMALL);
@@ -354,7 +362,6 @@ public class flickspeed {
             menu.addSeparator();
             menu.add(quitItem);
 
-            final TrayIcon icon = new TrayIcon(image, "flickspeed", menu);
             icon.setImageAutoSize(true);
             icon.setPopupMenu(menu);
 
