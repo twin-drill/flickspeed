@@ -10,7 +10,7 @@ body {
     background: #0e1726;
     color: white;
     border-bottom: 50px rgba(0, 0, 0, 1);
-    height: 9vh;
+    height: 8vh;
 }
 
 .navbar-brand,
@@ -34,7 +34,7 @@ body {
 header {
     position: relative;
     background-color: #0e1726;
-    height: 91vh;
+    height: 92vh;
     min-height: 25rem;
     width: 100%;
     overflow: hidden;
@@ -44,7 +44,6 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
@@ -128,6 +127,7 @@ header .header-downward-arrow img {
     padding: 12px 30px;
     cursor: pointer;
     font-size: 20px;
+    user-select: none;
 }
 
 .btn:hover {
@@ -135,8 +135,31 @@ header .header-downward-arrow img {
     color: white;
 }
 
+.button-no-link-highlight a:hover {
+    color: rgba(0, 0, 0, 0);
+}
+
 .version-numbers {
     font-size: 0.75em;
+}
+
+.page-footer {
+    background-color: #222222;
+    color: #cccccc;
+    padding: 60px 0 30px;
+}
+
+.footer-copyright {
+    color: #666666;
+    padding: 40px 0;
+}
+
+.footer-copyright a {
+    color: inherit;
+}
+
+.footer-copyright a:hover {
+    color: inherit;
 }
 
 @keyframes slide-down {
@@ -155,9 +178,5 @@ header .header-downward-arrow img {
         opacity: 0;
         transform: none;
     }
-
-}
-
-@keyframes pulse {
 
 }

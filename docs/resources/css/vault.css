@@ -1,0 +1,48 @@
+
+.container{
+    font-family: "Deeznuts";
+}
+.nav-wrapper{
+    display:flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+.left{
+    display: flex;
+}
+.nav-wrapper > .left > div{
+    margin-right: 25px;
+    font-size: 1.25em;
+}
+
+.right{
+    display: flex;
+}
+.nav-wrapper > .right > div {
+    margin-left: 20px;
+    font-size: 1.25em;
+}
+.nav-link-wrapper {
+    height: 20px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.5s;
+}
+.nav-link-wrapper a{
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+.nav-link-wrapper:hover{
+    border-bottom: 2px solid black;
+}
+.nav-link-wrapper a:hover{
+    color: black;
+}
+.logo img{
+    position: absolute;
+    left: 50%;
+    margin-left: -275px;
+}
+body{
+    background-color: lightblue;
+}

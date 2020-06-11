@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8">
 
-    <title>flickspeed</title>
+    <title>flickspeed: The mouse speed overlay</title>
     <meta name="description" content="flickspeed, the mouse speed overlay">
     <meta name="author" content="3Axes">
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="icon" href="resources/images/logo.png">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">    <link rel="stylesheet" href="resources/css/styles.css?v=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/css/styles.css?v=1.0">
 </head>
 
 <body>
@@ -97,10 +98,12 @@
 
         <h1 id="download">Download</h1>
         <div class="indented">
-            <a href="resources/assets/flickspeed.java" download>
-                <button class="btn"><i class="fa fa-download"></i> Direct Download <span class="version-numbers">(v1.0.0)</span></button>
-            </a>
-            <button class="btn" onclick="window.location.href='https://github.com/3Axes/flickspeed/releases'"><i class="fa fa-download"></i> Download from Github <span class="version-numbers">(v1.0.1)</span></button>
+            <span class="button-no-link-highlight">
+                <a href="resources/assets/flickspeed.java" download>
+                    <button class="btn"><i class="fa fa-download"></i> Direct Download <span class="version-numbers">(v1.0.0)</span></button>
+                </a>
+            </span>
+            <button class="btn" onclick="window.location.href='https://github.com/3Axes/flickspeed/releases/latest'"><i class="fa fa-download"></i> Download from Github <span class="version-numbers">(v1.0.1)</span></button>
         </div>
 
         <h1 id="next">What's next for <i>flickspeed</i></h1>
@@ -118,10 +121,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                    <h6 class="text-uppercase font-weight-bold">Footer Text</h6>
+                    <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+                    <p>flickspeed is made in Java. As the file you download is editable, do not download flickspeed from sources other than this official website,
+                    and use the Github download whenever possible.</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <h6 class="text-uppercase font-weight-bold">Additional Text</h6>
+                    <p>so you can do this too.
+                        <br/>that's pretty cool.
+                    </p>
                 </div>
             </div>
         </div>
+        <div class="footer-copyright text-center">© 2020 Copyright:... <a href="vault.html">who again?</a></div>
     </footer>
 
     <script src="resources/js/main.js"></script>
