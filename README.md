@@ -1,2 +1,4 @@
 # flickspeed
-Mouse speed overlay.
+> Mouse speed overlay.  
+https://3axes.github.io/flickspeed/
+
