@@ -25,7 +25,6 @@ public class flickspeed {
     final static Color COLOR_BG = new Color(22, 32, 53, 255);
     final static Font DEFAULT_FONT = new Font(FONT_NAME, Font.PLAIN, 16);
     final static Font DEFAULT_FONT_SMALL = new Font(FONT_NAME, Font.PLAIN, 13);
-
     final static Font DEFAULT_TITLE = new Font(FONT_NAME, Font.BOLD, 22);
 
     public static void main(String[] args) {
@@ -75,8 +74,7 @@ public class flickspeed {
     }
 
     public static void firstRun() {
-        Path file = Paths.get("data.dat");
-        JFrame firstRunFrame = new JFrame("flickspeed First Run");
+        JFrame firstRunFrame = new JFrame("flickspeed Setup");
         firstRunFrame.setIconImage(new ImageIcon("res/logo.png").getImage());
         firstRunFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         firstRunFrame.getContentPane().setMaximumSize(new Dimension(344, 379));
@@ -87,7 +85,7 @@ public class flickspeed {
 
         panel.setBorder(BorderFactory.createEmptyBorder(10, 15, 20, 100));
         panel.setBackground(COLOR_BG);
-        JLabel welcome = new JLabel("Welcome to flickspeed!");
+        JLabel welcome = new JLabel("flickspeed Setup");
         welcome.setForeground(Color.white);
         welcome.setFont(DEFAULT_TITLE);
 

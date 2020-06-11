@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flickspeed: How it Works</title>
+
+    <link href="vendors/prism-js/prism.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="icon" href="resources/images/logo.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="resources/css/how.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md">
+    <a class="navbar-brand font-weight-bold" href="index.html">
+        flickspeed
+    </a>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navigation">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html#about">
+                    About
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a class="nav-link" href="index.html#download">
+                    Download
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a class="nav-link" href="#how">
+                    How it Works
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<header>
+    <div class="overlay"></div>
+    <div class="hero-media">
+        <img src="resources/images/code.jpg">
+    </div>
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <p>The image behind contains</p>
+                <h1 class="display-3">JavaScript I didn't use</h1>
+                <p><br>I needed an image, ok?</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="margins-provided text-white language-markup">
+    <p>Why does this exist? Well, I'm providing the source code as a download, so there is nothing stopping anyone from
+        opening it
+        and looking inside.
+        <br>
+        Might as well explain myself at that point.
+        <br>
+        <br>
+        <span class="small-text">I also have a cs project.</span>
+        <br>
+        <br>
+        Lines numbers in the code blocks on this website are almost the same as in <code>flickspeed.java</code>.
+    </p>
+    <h1 id="how">How it Works</h1>
+    <div class="indented">
+        <p>
+            flickspeed is based on the Java Swing GUI framework. I will cover the main logic of the program, then delve
+            into
+            framework-specific methods and workings.
+            <br>
+            <br>
+        <h2>Logic</h2>
+        Normal usage is based around the existence of a <code>data.dat</code> file in the same directory as the program.
+        This file contains 4 integer values and 1 boolean value for specific configurations in the program. If this file
+        does not exist in the directory that the program is in, the program setup will run.
+        <br>
+        Example <code>data.dat</code> file:
+        <br>
+        <div class="wrapping-code-block">
+            <pre class="language-none line-numbers"><code>400
+0.5
+2
+1
+true
+</code></pre>
+        </div>
+        <br>
+        The program setup aims to get these 5 values and saves them into a new <code>data.dat</code> file.
+        <br>
+        On a normal, non-setup start, flickspeed will read the values from the <code>data.dat</code> file and store them
+        into
+        global variables, namely:
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="17"><code>static double DPI;
+static double NOTIFY_SPEED;
+static int NOTIFY_TIMER;
+static int CONVERSION;
+static boolean PERSISTENT_OVERLAY;</code></pre>
+        </div>
+        <br>
+        <code>DPI</code> is the inputted mouse dpi, used for calculation of speed.
+        <br>
+        <code>NOTIFY_SPEED</code> is the speed which is needed to trigger the <i>flick!</i> window appearing.
+        <br>
+        <code>NOTIFY_TIMER</code> is the amount of time that the <i>flick!</i> notification pauses the thread and stays
+        on-screen.
+        <br>
+        <code>CONVERSION</code> is a constant that dictates the type of conversion that is performed on the raw speed
+        taken from the display.
+        <br>
+        <code>PERSISTENT_OVERLAY</code> dictates whether the persistent overlay starts when launching the program.
+        <br>
+        <br>
+        After receiving these values, flickspeed will run the main program loop, which:
+        <ol>
+            <li>Defines relevant variables</li>
+            <li>Determines if the persistent overlay is enabled</li>
+            <ul>
+                <li>If yes, then creates and displays the overlay</li>
+            </ul>
+            <li>Creates the system tray icon and menu</li>
+            <li>Loops the following:</li>
+            <ol>
+                <li>
+                    Calculates the speed of the mouse in pixels/100ms
+                    <div class="wrapping-code-block">
+                            <pre class="language-java line-numbers" data-start="421"><code>public static double calculateSpeed(double dpi) {
+    Point p = MouseInfo.getPointerInfo().getLocation();
+    try {
+        TimeUnit.MILLISECONDS.sleep(200);
+    }
+    catch (InterruptedException e) { Thread.currentThread().interrupt();}
+    Point n = MouseInfo.getPointerInfo().getLocation();
+
+    return Math.abs(n.distance(p));
+}</code></pre>
+                    </div>
+                </li>
+                <li>Determines and uses the correct formula to translate to the right units</li>
+                <li>Updates the persistent overlay (if applicable)</li>
+                <li>Determines whether the calculated speed is over the defined threshold</li>
+                <ul>
+                    <li>If so, creates the <i>flick!</i> frame.</li>
+                </ul>
+            </ol>
+        </ol>
+        <br>
+
+        <h2>I/O</h2>
+        <br>
+        A <code>java.io.File</code> object is created on launch to check for existence of a file.
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="31"><code>File f = new File("data.dat");
+if (f.exists() && !f.isDirectory()) {}</code></pre>
+        </div>
+        <br>
+        If it does exist, a <code>java.util.Scanner</code> object is created to scan the file's contents.
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="34"><code>Scanner fileScan = new Scanner(f);
+String line;
+for (int i = 1; i < 6; i++) {
+    // Scan lines
+}</code></pre>
+        </div>
+        <br>
+        The values are extracted from the file using a <code>switch()</code> and casted to their various types.
+        <br>
+        <br>
+        To write/overwrite a file, a <code>java.nio.file.Path</code> object is created as a placeholder for the
+        predetermined
+        path of the new file. It is then placed into the static method <code>java.nio.file.Files.write()</code>, which
+        will
+        write the data collected to a file. After this, the program is terminated.
+        <div class="wrapping-code-block">
+            <pre class="language-java line-numbers"
+                 data-start="182"><code>Path file = Paths.get("data.dat");</code></pre>
+            <pre class="language-java line-numbers" data-start="200"><code>Files.write(file, lines);</code></pre>
+        </div>
+        <br>
+
+        <h2>Swing</h2>
+        <span class="small-text">brace for impact.</span>
+        <br>
+        <br>
+        Global variables are used to store common GUI elements, to (hopefully) avoid memory waste at runtime.
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="25"><code>final static Color COLOR_BG = new Color(22, 32, 53, 255);
+final static Font DEFAULT_FONT = new Font(FONT_NAME, Font.PLAIN, 16);
+final static Font DEFAULT_FONT_SMALL = new Font(FONT_NAME, Font.PLAIN, 13);
+final static Font DEFAULT_TITLE = new Font(FONT_NAME, Font.BOLD, 22);</code></pre>
+        </div>
+        <br>
+        The windows that the program creates are <code>javax.swing.JFrame</code> objects.
+        <br>
+        <br>
+        When the setup is run due to there being no <code>data.dat</code> file or run straight from the tray menu, a
+        JFrame
+        independent of the other JFrames is created. It is given a set of properties and a
+        <code>java.awt.LayoutManager</code>
+        to organize the elements in the frame.
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="77"><code>JFrame firstRunFrame = new JFrame("flickspeed Setup");
+firstRunFrame.setIconImage(new ImageIcon("res/logo.png").getImage());
+firstRunFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+firstRunFrame.getContentPane().setMaximumSize(new Dimension(344, 379));
+firstRunFrame.setResizable(false);
+
+firstRunFrame.getContentPane().setLayout(new BorderLayout());
+JPanel panel = new JPanel(new GridLayout(0, 1));</code></pre>
+        </div>
+        <span class="small-text">before you ask, yes, I know those dimensions are strangely specific.</span>
+        <br>
+        <br>
+        A <code>javax.swing.JPanel</code> is created inside the frame for easier management, and then all UI elements
+        are defined and
+        given properties.
+        <br>
+        Example - Mouse DPI Field:
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="92"><code>JLabel insertDPI = new JLabel("Mouse DPI:");
+insertDPI.setForeground(Color.white);
+insertDPI.setFont(DEFAULT_FONT);
+JTextField dpiField = new JTextField();
+dpiField.setBackground(COLOR_BG);
+dpiField.setForeground(Color.white);
+dpiField.setFont(DEFAULT_FONT_SMALL);</code></pre>
+        </div>
+        <br>
+        When the "Save and Exit" button is pressed, flickspeed checks each field of input with regex made to detect bad
+        inputs.
+        If a bad input is detected, an error label (previously hidden) is made visible.
+        <div class="wrapping-code-block">
+            <pre class="language-java line-numbers" data-start="197"><code>if (time.matches("\\d+")) {</code></pre>
+            <pre class="language-java line-numbers" data-start="100" data-line="101" data-line-offset="100"><code>JLabel errorLabel1 = new JLabel("Please enter a valid number.");
+errorLabel1.setVisible(false);
+errorLabel1.setForeground(Color.red);
+errorLabel1.setFont(DEFAULT_FONT_SMALL);</code></pre>
+            <pre class="language-java line-numbers" data-start="219"><code>else { errorLabel1.setVisible(true);}</code></pre>
+        </div>
+        <br>
+        <br>
+        In the main loop, a JLabel is created to provide easier access to changing the persistent overlay.
+        <div class="wrapping-code-block">
+            <pre class="language-java line-numbers" data-start="257"><code>JLabel spLb = null;</code></pre>
+            <pre class="language-java line-numbers" data-start="259"><code>if (PERSISTENT_OVERLAY) {
+    spLb = createPersistentOverlay();</code></pre>
+            <pre class="language-java line-numbers" data-start="285"><code>updatePersistentOverlay(spLb, speed);</code></pre>
+            <pre class="language-java line-numbers" data-start="300"><code>public static void updatePersistentOverlay(JLabel label, double speed) {
+    String labelText = String.format("%.2f", speed);
+    labelText += UNIT;
+    label.setText(labelText);
+}</code></pre>
+        </div>
+        <br>
+        Because the persistent overlay is toggle-able, the JFrame for the persistent overlay must have the ability to
+        recreate/dispose of itself.
+        This is accomplished by using <code>javax.swing.SwingUtilities.getRoot()</code>, which returns the JFrame that
+        the provided object is in.
+        <br>
+        <br>
+        Creating and disposing of the persistent overlay:
+        <div class="wrapping-code-block">
+            <p class="indented">Creation</p>
+            <pre class="language-java line-numbers"
+                 data-start="283"><code>spLb = createPersistentOverlay();</code></pre>
+            <pre class="language-java line-numbers" data-start="306"><code>public static JLabel createPersistentOverlay() {
+    JFrame frame = new JFrame("flickspeed Persistent Overlay");
+    frame.setUndecorated(true);
+    frame.setAlwaysOnTop(true);
+    frame.setVisible(true);
+    frame.setFocusableWindowState(false);
+    frame.setAutoRequestFocus(false);
+
+    frame.getRootPane().putClientProperty("apple.awt.draggableWindowBackground", false);</code></pre>
+            <p class="indented">Deletion</p>
+            <pre class="language-java line-numbers" data-start="289"><code>JFrame frame = (JFrame) SwingUtilities.getRoot(spLb);
+frame.dispose();</code></pre>
+        </div>
+        <br>
+        When the speed threshold is crossed, the larger <i>flick!</i> JFrame is created.
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="294"><code>if (speed >= NOTIFY_SPEED) {
+    createFrame(speed);
+}</code></pre>
+            <pre class="language-java line-numbers" data-start="378"><code>public static void createFrame(double speed) {
+    JFrame frame = new JFrame("flickspeed");
+    frame.setUndecorated(true);
+    frame.setAlwaysOnTop(true);
+    frame.setVisible(true);
+    frame.setFocusableWindowState(false);
+    frame.setAutoRequestFocus(false);
+
+    frame.getRootPane().putClientProperty("apple.awt.draggableWindowBackground", false);</code></pre>
+        </div>
+        <br>
+        The frame is auto-deleted after the defined amount of seconds passes.
+        <div class="wrapping-code-block">
+                <pre class="language-java line-numbers" data-start="409"><code>frame.pack();
+frame.transferFocusBackward();
+
+try {
+    TimeUnit.SECONDS.sleep(NOTIFY_TIMER);
+}
+catch(InterruptedException e) { Thread.currentThread().interrupt();}
+
+frame.setVisible(false);
+frame.dispose();</code></pre>
+        </div>
+        <br>
+        <br>
+        <h2>The Website</h2>
+        <span class="small-text">There's more!?</span>
+        <br>
+        <br>
+        Kidding.
+        <br>
+        <br>
+        Unless...
+        <br>
+        <br>
+        The website was made using HTML5, CSS3, JQuery, Bootstrap and Prism.js. The landing page was a journey in and of
+        itself that I don't quite want to recall.
+        <br>
+        <br>
+        <span class="small-text">aaaand it's over. i'm tired asf. you can go home now.</span>
+        </p>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+                <p>flickspeed is made in Java. As the file you download is editable, do not download flickspeed from
+                    sources other than this official website,
+                    and use the Github download whenever possible.</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <h6 class="text-uppercase font-weight-bold">Additional Text</h6>
+                <p>so you can do this too.
+                    <br/>that's pretty cool.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center">© 2020 Copyright:... <a href="vault.html">who again?</a></div>
+</footer>
+
+<script src="vendors/prism-js/prism.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
