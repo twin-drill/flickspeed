@@ -1,4 +1,4 @@
 # flickspeed
 > Mouse speed overlay.  
-https://tenqo.github.io/flickspeed/
+https://twin-drill.github.io/flickspeed/
 
